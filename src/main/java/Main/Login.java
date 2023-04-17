@@ -276,45 +276,30 @@ public class Login {
 
         String adminPass = info.nextLine();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("A.csv"))) {
-            String line = "";
-            String splitBy = ",";
-            String[] loginArr;
-            boolean isFound = false;
+        boolean isFound = false;
 
-            while ((line = br.readLine()) != null) {
-                loginArr = line.split(splitBy);
+        user = "admin1";
+        pass = "adminPass";
 
-                user = loginArr[0];
-                pass = loginArr[1];
-
-                if (adminUser.equals(user) && adminPass.equals(pass)) {
-                    isFound = true;
-                }
-
-            }
-            br.close();
-
-            if (isFound) {
-                GameLogic.clearConsole();
-                TextResult result2 = translator.translateText("You have entered the admin's domain.", null, language);
-                System.out.println(result2.getText());
-                System.out.println();
-                Admin.admin();
-
-            } else {
-                GameLogic.clearConsole();
-                TextResult result3 = translator.translateText("Oh no! Your spell words did not open your path! Please recite them again.", null, language);
-                System.out.println(result3.getText());
-                adminLoginInfo(user, pass);
-                System.out.println();
-            }
-
-        } catch (IOException | DeepLException | InterruptedException ex) {
-            TextResult result3 = translator.translateText("Error Opening file", null, language);
-            System.out.println(result3.getText());
-
+        if (adminUser.equals(user) && adminPass.equals(pass)) {
+            isFound = true;
         }
+
+        if (isFound) {
+            GameLogic.clearConsole();
+            TextResult result2 = translator.translateText("You have entered the admin's domain.", null, language);
+            System.out.println(result2.getText());
+            System.out.println();
+            Admin.admin();
+
+        } else {
+            GameLogic.clearConsole();
+            TextResult result3 = translator.translateText("Oh no! Your spell words did not open your path! Please recite them again.", null, language);
+            System.out.println(result3.getText());
+            adminLoginInfo(user, pass);
+            System.out.println();
+        }
+
     }
 
     /**
