@@ -11,7 +11,6 @@ import static Main.Login.translator;
  */
 public class Player extends Creatures.Creature {
 
-    //TODO private int gold;
     private int numPotions;
     private int dungeonLocation;
 
